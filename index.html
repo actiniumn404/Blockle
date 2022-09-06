@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Blockle</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="Blockle">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!--<link rel="apple-touch-icon" href="assets/icon.png">
+    <link rel="icon" href="assets/icon.png">-->
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div id="nav__title">Blockle</div>
+
+        <i class="fa-solid fa-circle-info btn" id="nav__info"></i>
+        <i class="fa-solid fa-share-from-square btn" id="nav__stats"></i>
+        <i class="fa-solid fa-gear btn" id="nav__settings"></i>
+    </nav>
+    <main>
+        <div id="censoredText"></div>
+        <h1 id="numGuess">0 Guesses</h1>
+        <h1 id="numHints">0 Hints Used</h1>
+        <div id="past"></div>
+        <input id="userGuess">
+        <button id="guess" class="btn">Guess</button>
+        <div id="hint_wrapper">
+            <button id="hint">Hint <i class="fa-solid fa-caret-down"></i></button>
+            <div id="hint_dropdown">
+                <button class="hinttype btn" id="blockhint">Block Message</button>
+                <button class="hinttype btn" id="letterhint">First Letter Reveal</button>
+            </div>
+        </div>
+    </main>
+    <div id="hintPopup">
+        <div id="hintContent">
+            <div class="close btn">&times;</div>
+            <div class="header">
+                <h1><span class="censor"><span>--------</span></span> School District <span class="censor"><span>---</span></span></h1>
+            </div>
+            <div class="content">
+                Oops,
+                <span class="webname">name.example.com</span>
+                <span>is not available because it is categorized as <span class="category">---</span></span>
+            </div>
+            <div class="footer">
+                <div class="ip">You are logged in as <span class="censor"><span>--------</span></span> (IP Address: <span class="censor"><span>--.---.---.---</span></span>)</div>
+                <u class="msg">If your error is "filtering error" please reboot. If this site is needed for school work click here to fill out a request to unblock include the blocked URL NOT the localhost page</u>
+            </div>
+        </div>
+    </div>
+    <div id="shareStats" class="modal">
+        <div class="modal-content">
+            <h1>Statistics <span class="close">&times;</span></h1>
+            <div id="stats">
+                <div class="topbottom">
+                    <span id="bestplays">100</span>
+                    <span>Best Play Streak</span>
+                </div>
+                <div class="topbottom">
+                    <span id="playstreak">100</span>
+                    <span>Play Streak</span>
+                </div>
+                <div class="topbottom">
+                    <span id="bestwins">100</span>
+                    <span>Best Win Streak</span>
+                </div>
+                <div class="topbottom">
+                    <span id="winstreak">100</span>
+                    <span>Win Streak</span>
+                </div>
+                <div class="topbottom">
+                    <span id="winpercent">100%</span>
+                    <span>Win %</span>
+                </div>
+            </div>
+            <textarea id="stats_today">https://blockle.alingo.app/ 9/5/2022
+${} words (${} hints)
+100% complete
+Play streak: 1</textarea>
+            <button id="share_stats" class="btn">Share</button>
+            <div id="nextpuzzle">Next puzzle in <span>0:00:00</span></div>
+    </div>
+    <script src="puzzles.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
