@@ -299,3 +299,9 @@ main > h1{
     margin: 20px 0;
     font-size: 18px;
 }
+
+.middle{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

@@ -28,11 +28,11 @@ const save = () => {
 }
 
 const s = (str) => {
-    return str.length === 1 ? "s" : ""
+    return str !== 1 ? "s" : ""
 }
 
 const es = (str) => {
-    return str.length === 1? "es" : ""
+    return str !== 1 ? "es" : ""
 }
 
 function choose(choices) {
@@ -99,11 +99,15 @@ const init = () => {
     $("#hintPopup .category").html(puzzle.puzzle.category)
     $("#numHints").html(hintmsg())
     $("#hint").prop("disabled", user_data.guesses < 5)
-    $("#hint_wrapper").data("disabled", (user_data.guesses < 5).toString())
+    if (user_data.guesses < 5){
+        $("#hint_wrapper").addClass("disabled")
+    }else{
+        $("#hint_wrapper").removeClass("disabled")
+    }
     $("#numGuess").html(`${user_data.guesses} Guess${user_data.guesses !== 1 ? "es": ""}`)
     let i = 0;
     for (let censor of $("#censoredText .censor")){
-        if (user_data.guessed.includes($(censor).data("sol"))){
+        if (user_data.guessed.includes($(censor).data("sol").toString())){
             $(censor).removeClass("censor").addClass("revealed")
         }
         $(censor).addClass(i.toString())
@@ -152,12 +156,17 @@ const guess = (word) => {
     $("#numGuess").html(`${user_data.guesses} Guess${user_data.guesses !== 1 ? "es": ""}`)
     $("#numHints").html(hintmsg())
     $("#hint").prop("disabled", user_data.guesses < 5)
-    $("#hint_wrapper").data("disabled", (user_data.guesses < 5).toString())
+    if (user_data.guesses < 5){
+        $("#hint_wrapper").addClass("disabled")
+    }else{
+        $("#hint_wrapper").removeClass("disabled")
+    }
     if (puzzle.puzzle.solutions.includes(word) || !$("#censoredText .censor").length){
         $("#censoredText .censor").removeClass("censor").addClass("revealed")
         $(".pastGuess:last-of-type").html("👑 " + word)
         conf()
         $("#hint, #guess, #userGuess").prop("disabled", true)
+        $("#hint_wrapper").addClass("disabled")
         user_data.solved = true
     }
     save()
@@ -193,7 +202,7 @@ $("#blockhint").click(() => {
 const hint = (index) => {
     let element = $(`#censoredText .censor.${index}`)
     let hintlen = element.html().length >= 6 ? 2: 1
-    element.html(`${element.data("sol").substring(0, hintlen)}<span>${element.data("sol").substring(hintlen)}</span>`)
+    element.html(`${element.data("sol").toString().substring(0, hintlen)}<span>${element.data("sol").toString().substring(hintlen)}</span>`)
 }
 
 $("#letterhint").click(() => {
@@ -246,13 +255,13 @@ $("#nav__stats, #shareStats .close").click(() => {
     $("#winpercent").html(Math.floor(winratio * 100) + "%")
 
         let sharetext = `https://blockle.alingo.app/ ${(d.getMonth() + 1)}/${d.getDate()}/${d.getFullYear()}
-${user_data.guessed.length} guess${es(user_data.guessed.length)} (${user_data.hints} hint${s(user_data.guessed.length)})
+${user_data.guessed.length} guess${es(user_data.guessed.length)} (${user_data.hints} hint${s(user_data.hints)})
 ${user_data.solved ? 100: Math.floor((1 - ($("#censoredText .censor").length / puzzle.blocked.length)) * 100)}% complete
 Play streak: ${playstreak}
 Solve Streak: ${solvestreak}`
     $("#stats_today").val(sharetext)
     $("#share_stats").click(() => {
-        navigation.clipboard.writeText(sharetext)
+        navigator.clipboard.writeText(sharetext)
     })
 })
 
