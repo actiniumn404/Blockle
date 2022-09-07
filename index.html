@@ -1,5 +1,29 @@
+<!--
+MIT License
+
+Copyright (c) 2022 Andrew Chen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
+
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Blockle</title>
@@ -94,12 +118,42 @@
                     <span>Win %</span>
                 </div>
             </div>
-            <textarea id="stats_today">https://blockle.alingo.app/ 9/5/2022
-${} words (${} hints)
-100% complete
-Play streak: 1</textarea>
+            <textarea id="stats_today"></textarea>
             <button id="share_stats" class="btn">Share</button>
             <div id="nextpuzzle">Next puzzle in <span>0:00:00</span></div>
+        </div>
+    </div>
+
+    <div id="infoModal" class="modal" style="display: block;">
+        <div class="modal-content">
+            <h1>About Blockle <span class="close">&times;</span></h1>
+            <p>Blockle is a daily open source "-le" word game where the user tries to guess the subject of an obfuscated
+                website description. The subject of each  puzzle are blocked in the creators school district, hence
+                the title "Blockle." (Note: guaranteed to be SFW)
+                <br>
+                <br>
+                Blockle is licensed under the <a href="LICENSE.txt" target="_blank">MIT License</a>. You may find the source
+                code of this project on GitHub (<a href="https://github.com/actiniumn404/Blockle" target="_blank">link</a>).
+                <br>
+                <br>
+                Created by Actiniumn404 (<a href="https://github.com/actiniumn404" target="_blank">GitHub Profile</a>).
+            </p>
+            <h1>How to Play</h1>
+            <ul>
+                <li>To start, guess a word that you think might be in the puzzle. Any instances of the guessed word will be
+            revealed.</li>
+                <li>To win, you either have to either reveal all the censored words or correctly guess the subject of the puzzle.</li>
+                <li>
+                    After 5 guesses, 2 types of hints will be made available.
+                    <ul>
+                        <li>The block message hint reveals a recreation of the block message received when trying to
+                            visit the website. You will see why the site is blocked and the partially censored website URL.</li>
+                        <li>The first-letter hint will reveal the first letter of a random censored word if the word is
+                            under 5 characters long. If it is above five characters long, then the first two letters are revealed.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
     </div>
     <script src="puzzles.js" defer></script>
     <script src="script.js" defer></script>

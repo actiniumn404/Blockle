@@ -1,3 +1,27 @@
+/*
+MIT License
+
+Copyright (c) 2022 Andrew Chen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
 *, *::before, *::after{
     box-sizing: border-box;
 }
@@ -133,6 +157,11 @@ main > h1{
     text-align: left;
 }
 
+.modal:not(#hintPopup) .modal-content{
+    position: relative;
+    top: 0;
+}
+
 /* Modal Content/Box */
 #hintContent {
     background-color: #3b3b45;
@@ -172,6 +201,7 @@ main > h1{
     color: white;
     font-size: 36px;
     display: block;
+    word-break: break-all;
     line-height: 50px;
 }
 
@@ -238,7 +268,7 @@ main > h1{
     box-shadow: 0 0 4px var(--theme);
 }
 
-#shareStats .close{
+.modal:not(#hintPopup) .close{
     top: calc(15vw + 20px);
     position: fixed;
     right: 10vw;
@@ -267,11 +297,6 @@ main > h1{
 
 #shareStats > .modal-content > h1{
     margin: 0;
-}
-
-#shareStats > .modal-content{
-    position: relative;
-    top: 0;
 }
 
 @keyframes in {
@@ -304,4 +329,19 @@ main > h1{
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+a{
+    color: #2381d9;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+#infoModal :is(p, ul){
+    font-size: 18px;
+    line-height: 24px;
 }
