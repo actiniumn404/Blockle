@@ -114,6 +114,7 @@ const init = () => {
         user_data = def
     }
     puzzle.puzzle = puzzles[user_data.date]
+    puzzle.puzzle.solutions = puzzle.puzzle.solutions.map(e => e.toLowerCase())
     puzzle.content = puzzle.puzzle.content
     puzzle.blocked = [...puzzle.content.matchAll(pipe)].map(e => e[1])
     puzzle.censored = puzzle.content.replace(pipe, `<span class='censor' data-sol="$1"><span>$1</span></span>`)
