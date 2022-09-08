@@ -63,7 +63,7 @@ function choose(choices) {
 }
 
 const hintmsg = () => {
-    return`${user_data.hints} Hint${user_data.hints !== 1 ? "s": ""} Used`
+    return `${user_data.hints} Hint${user_data.hints !== 1 ? "s" : ""} Used`
 }
 
 function conf() {
@@ -82,7 +82,7 @@ function conf() {
         return Math.random() * (max - min) + min;
     }
 
-    let interval = setInterval(function() {
+    let interval = setInterval(function () {
         let timeLeft = animationEnd - Date.now();
 
         if (timeLeft <= 0) {
@@ -110,7 +110,7 @@ function conf() {
 }
 
 const init = () => {
-    if (user_data.date !== d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate()){
+    if (user_data.date !== d.getFullYear() + "/" + (d.getMonth() + 1) + "/" + d.getDate()) {
         user_data = def
     }
     puzzle.puzzle = puzzles[user_data.date]
@@ -122,29 +122,29 @@ const init = () => {
     $("#hintPopup .category").html(puzzle.puzzle.category)
     $("#numHints").html(hintmsg())
     $("#hint").prop("disabled", user_data.guesses < 5)
-    if (user_data.guesses < 5){
+    if (user_data.guesses < 5) {
         $("#hint_wrapper").addClass("disabled")
-    }else{
+    } else {
         $("#hint_wrapper").removeClass("disabled")
     }
-    $("#numGuess").html(`${user_data.guesses} Guess${user_data.guesses !== 1 ? "es": ""}`)
+    $("#numGuess").html(`${user_data.guesses} Guess${user_data.guesses !== 1 ? "es" : ""}`)
     let i = 0;
-    for (let censor of $("#censoredText .censor")){
-        if (user_data.guessed.includes($(censor).data("sol").toString())){
+    for (let censor of $("#censoredText .censor")) {
+        if (user_data.guessed.includes($(censor).data("sol").toString())) {
             $(censor).removeClass("censor").addClass("revealed")
         }
         $(censor).addClass(i.toString())
-        if (!user_data.hinted.includes(i)){
+        if (!user_data.hinted.includes(i)) {
             puzzle.unhinted.push(i)
-        }else{
+        } else {
             hint(i)
         }
         i++
     }
-    for (let word of user_data.guessed){
+    for (let word of user_data.guessed) {
         $("#past").append(`<div class="pastGuess">${word}</div>`)
     }
-    if (user_data.solved){
+    if (user_data.solved) {
         $(".pastGuess:last-of-type").html("👑 " + $(".pastGuess:last-of-type").html())
         $("#hint, #guess, #userGuess").prop("disabled", true)
         $("#hint_wrapper").addClass("disabled")
@@ -166,7 +166,7 @@ const guess = (word) => {
             e.innerHTML = e.getAttribute("data-sol")
             e.classList.add("revealed")
             e.classList.remove("censor")
-            if (user_data.hinted.includes(Number(e.classList[0]))){
+            if (user_data.hinted.includes(Number(e.classList[0]))) {
                 user_data.hinted.splice(user_data.hinted.indexOf(Number(e.classList[0])), 1)
             }
             save()
@@ -176,15 +176,15 @@ const guess = (word) => {
     $("#past").append(`<div class="pastGuess">${word}</div>`).animate({scrollTop: $("#past").prop('scrollHeight')})
     user_data.guessed.push(word)
     user_data.guesses++
-    $("#numGuess").html(`${user_data.guesses} Guess${user_data.guesses !== 1 ? "es": ""}`)
+    $("#numGuess").html(`${user_data.guesses} Guess${user_data.guesses !== 1 ? "es" : ""}`)
     $("#numHints").html(hintmsg())
     $("#hint").prop("disabled", user_data.guesses < 5)
-    if (user_data.guesses < 5){
+    if (user_data.guesses < 5) {
         $("#hint_wrapper").addClass("disabled")
-    }else{
+    } else {
         $("#hint_wrapper").removeClass("disabled")
     }
-    if (puzzle.puzzle.solutions.includes(word) || !$("#censoredText .censor").length){
+    if (puzzle.puzzle.solutions.includes(word) || !$("#censoredText .censor").length) {
         $("#censoredText .censor").removeClass("censor").addClass("revealed")
         $(".pastGuess:last-of-type").html("👑 " + word)
         conf()
@@ -196,13 +196,13 @@ const guess = (word) => {
 }
 
 $("#userGuess").keyup((e) => {
-    if (e.key === "Enter" && $("#userGuess").val()){
+    if (e.key === "Enter" && $("#userGuess").val()) {
         guess($("#userGuess").val())
     }
 })
 
 $("#guess").click(() => {
-    if ($("#userGuess").val()){
+    if ($("#userGuess").val()) {
         guess($("#userGuess").val())
     }
 })
@@ -214,7 +214,7 @@ $("#hintPopup .close").click(() => {
 $("#blockhint").click(() => {
     $("#hintPopup").toggle().css("animation", "fadein ease 0.5s")
     $("#hintPopup #hintContent").css("animation", "in ease 0.5s")
-    if (!user_data.blockhintused){
+    if (!user_data.blockhintused) {
         user_data.hints++
     }
     user_data.blockhintused = true
@@ -224,13 +224,13 @@ $("#blockhint").click(() => {
 
 const hint = (index) => {
     let element = $(`#censoredText .censor.${index}`)
-    let hintlen = element.html().length >= 6 ? 2: 1
+    let hintlen = element.html().length >= 6 ? 2 : 1
     element.html(`${element.data("sol").toString().substring(0, hintlen)}<span>${element.data("sol").toString().substring(hintlen)}</span>`)
 }
 
 $("#letterhint").click(() => {
     let index = choose(puzzle.unhinted)
-    if (index !== undefined && !$(`#censoredText .${index}`).hasClass("revealed")){
+    if (index !== undefined && !$(`#censoredText .${index}`).hasClass("revealed")) {
         hint(index)
         user_data.hinted.push(index)
         puzzle.unhinted.splice(puzzle.unhinted.indexOf(index), 1)
@@ -240,9 +240,19 @@ $("#letterhint").click(() => {
     }
 })
 
+let generated = true
 $("#nav__info, #infoModal .close").click(() => {
     $("#infoModal").toggle().css("animation", "fadein ease 0.5s")
     $("#infoModal .modal-content").css("animation", "in ease 0.5s")
+    if (!generated){
+        $('.h-captcha').prop("outerHTML", $('.h-captcha').prop("outerHTML"))
+        generated = true
+    }
+})
+
+$("#nav__settings, #settingsModal .close").click(() => {
+    $("#settingsModal").toggle().css("animation", "fadein ease 0.5s")
+    $("#settingsModal .modal-content").css("animation", "in ease 0.5s")
 })
 
 $("#nav__stats, #shareStats .close").click(() => {
@@ -257,16 +267,16 @@ $("#nav__stats, #shareStats .close").click(() => {
     let bestwins = 0
     let winratio = 0
 
-    for (let date in streak){
-        if (new Date(date) - new Date(past) <= 86400000){
+    for (let date in streak) {
+        if (new Date(date) - new Date(past) <= 86400000) {
             playstreak++
-        }else{
+        } else {
             playstreak = 1
             solvestreak = 0
         }
-        if (streak[date].solved){
+        if (streak[date].solved) {
             solvestreak++
-        }else{
+        } else {
             solvestreak = 0
         }
         past = date
@@ -282,9 +292,9 @@ $("#nav__stats, #shareStats .close").click(() => {
     $("#bestwins").html(bestwins)
     $("#winpercent").html(Math.floor(winratio * 100) + "%")
 
-        let sharetext = `https://blockle.alingo.app/ ${(d.getMonth() + 1)}/${d.getDate()}/${d.getFullYear()}
+    let sharetext = `https://blockle.alingo.app/ ${(d.getMonth() + 1)}/${d.getDate()}/${d.getFullYear()}
 ${user_data.guessed.length} guess${es(user_data.guessed.length)} (${user_data.hints} hint${s(user_data.hints)})
-${user_data.solved ? 100: Math.floor((1 - ($("#censoredText .censor").length / puzzle.blocked.length)) * 100)}% complete
+${user_data.solved ? 100 : Math.floor((1 - ($("#censoredText .censor").length / puzzle.blocked.length)) * 100)}% complete
 Play streak: ${playstreak}
 Solve Streak: ${solvestreak}`
     $("#stats_today").val(sharetext)
@@ -302,5 +312,54 @@ let timeleft = setInterval(() => {
         + ":" + (Math.floor(diff / 60) % 60).toString().padStart(2, "0") // minutes
         + ":" + (diff % 60).toString().padStart(2, "0")) // seconds
 }, 0)
+
+$("#suggestBtn").click(() => {
+    if (!$("#suggestionText").val().trim()) {
+        return $("#suggError").html("Please fill out your suggestion").show()
+    }
+    else if (!$('[name=h-captcha-response]').val()){
+        return $("#suggError").html("Please complete the hCaptcha.").show()
+    }
+    $("#suggError").hide()
+    d = new Date()
+
+    let timezone = d.toLocaleDateString('en-US', {
+        day: '2-digit',
+        timeZoneName: 'long',
+    }).slice(4)
+
+    fetch("https://discord.com/api/webhooks/1017228301909102674/Z6ONrH_jiEBPzP6oA6CJ6KLl_Hwxh6Mg8xK5w_8YYzEcBsHqcVH859JcJ6wKsmMYRA-c", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            "embeds": [
+                {
+                    "author": {
+                        "name": $("#suggestName").val() ? $("#suggestName").val() : "Anonymous"
+                    },
+                    "title": "New Suggestion!",
+                    "color": 3066993,
+                    "footer": {
+                        "text": `Today ${d.getHours() % 12}:${d.getMinutes().toString().padStart(2, "0")} ${d.getHours() >= 12 ? "PM": "AM"} (${timezone})`
+                    },
+                    "fields": [
+                        {
+                            "name": "The Content:",
+                            "value": $("#suggestionText").val(),
+                            "inline": false
+                        }
+                    ],
+                    "thumbnail": {
+                        "url": "https://blockle.alingo.app/assets/icon.png"
+                    }
+                }
+            ]
+        })
+    })
+    $("#suggestName").val("")
+    $("#suggestionText").val("")
+    $('.h-captcha').prop("outerHTML", $('.h-captcha').prop("outerHTML"))
+    generated = true
+})
 
 init()

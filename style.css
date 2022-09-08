@@ -176,7 +176,7 @@ main > h1{
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 150px auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
@@ -269,10 +269,11 @@ main > h1{
 }
 
 .modal:not(#hintPopup) .close{
-    top: calc(15vw + 20px);
+    top: calc(170px);
     position: fixed;
-    right: 10vw;
+    right: calc(10vw + 20px);
 }
+
 
 .topbottom{
     display: flex;
@@ -344,4 +345,37 @@ a:hover{
 #infoModal :is(p, ul){
     font-size: 18px;
     line-height: 24px;
+}
+
+#suggestionText{
+    display: block;
+    width: min(500px, 100%);
+    height: 100px;
+    outline: none;
+    padding: 10px;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    margin: 10px;
+}
+
+#suggestBtn{
+    display: block;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    width: min(500px, 100%);
+    cursor: pointer;
+    background: whitesmoke;
+    border: 1px solid gray;
+}
+
+#suggestName{
+    display: block;
+    width: min(500px, 100%);
+    height: 50px;
+    outline: none;
+    padding: 10px;
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    margin: 10px;
 }

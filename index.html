@@ -52,6 +52,7 @@ SOFTWARE.
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.3/dist/confetti.browser.min.js"></script>
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 </head>
 <body>
     <nav>
@@ -124,10 +125,11 @@ SOFTWARE.
         </div>
     </div>
 
-    <div id="infoModal" class="modal" style="display: block;">
+    <div id="infoModal" class="modal">
         <div class="modal-content">
             <h1>About Blockle <span class="close">&times;</span></h1>
-            <p>Blockle is a daily open source "-le" word game where the user tries to guess the subject of an obfuscated
+            <p>
+                Blockle is a daily open source "-le" word game where the user tries to guess the subject of an obfuscated
                 website description. The subject of each  puzzle are blocked in the creators school district, hence
                 the title "Blockle." (Note: guaranteed to be SFW)
                 <br>
@@ -153,6 +155,29 @@ SOFTWARE.
                     </ul>
                 </li>
             </ul>
+            <h1>Privacy Policy</h1>
+            <p>
+                <strong>Blockle will never sell your data. Never. Never ever.</strong>
+                <br>
+                <br>
+                Blockle does not collect any personal information. The only data we collect are the data about your
+                game history--how many games you've played, solved, how many words you've guessed, how many hints
+                you've used, etc.
+            </p>
+            <h1>Suggest Something</h1>
+            <p>Blockle is still a game in its beta stage. Any feedback would be greatly appreciated. (Tip: you can use
+                markdown to format)</p>
+            <input id="suggestName" placeholder="What should we send this as?">
+            <textarea id="suggestionText" placeholder="Suggest something."></textarea>
+            <button class="btn" id="suggestBtn">Send!</button>
+            <div class="h-captcha" style="margin: 10px;" data-sitekey="92f206a2-ca65-4892-8fae-e44ea65a377b"></div>
+            <span style="display: none;color:red;margin:10px" id="suggError">[Error goes here]</span>
+        </div>
+    </div>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <h1>Blockle Settings <span class="close">&times;</span></h1>
+            <p>Nothing here yet. Try again later.</p>
         </div>
     </div>
     <script src="puzzles.js" defer></script>
