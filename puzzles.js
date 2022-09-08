@@ -29,6 +29,12 @@ SOFTWARE.
 // comes with finding the solution to the puzzle. Don't cheat okay?
 
 const puzzles = {
+    "2022/9/6": {
+        "content": "||test||",
+        "hint": "no",
+        "category": "no",
+        "solutions": []
+    },
     "2022/9/7": {
         "content": "||1|| ||2|| ||3|| ||4|| testing",
         "hint": "https://bl||ock||le.||alingo||.app",
@@ -149,5 +155,3 @@ const puzzles = {
         "solutions": ["2020 census", "https://2020census.gov", "2020 u.s. census"]
     }
 }
-
-
